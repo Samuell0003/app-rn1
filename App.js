@@ -36,6 +36,10 @@ const App = () => {
     });
   };
 
+  const removeFromCard = (id) => {
+    setItensCarrinho(itensCarrinho.filter( e => e.id != id));
+  }
+
   const getItemsCount = () => {
     return itensCarrinho.reduce((sum, item) => sum + item.qty, 0);
   };
@@ -74,7 +78,7 @@ const App = () => {
             headerRight: () => <CartIcon navigation={navigation} getItemsCount={getItemsCount} />,
           })}
         >
-          {(props) => <Cart {...props} items={itensCarrinho} getTotalPrice={getTotalPrice} />}
+          {(props) => <Cart {...props} items={itensCarrinho} getTotalPrice={getTotalPrice} removeFromCard={removeFromCard} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
